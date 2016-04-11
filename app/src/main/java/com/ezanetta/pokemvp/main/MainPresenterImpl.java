@@ -1,7 +1,5 @@
 package com.ezanetta.pokemvp.main;
 
-import android.util.Log;
-
 import com.ezanetta.pokemvp.api.PokemonEntries;
 
 import java.util.List;
@@ -27,11 +25,6 @@ public class MainPresenterImpl implements MainPresenter, FindPokemonsInteractor.
         }
 
         mFindPokemonsInteractor.findPokemons(this);
-    }
-
-    @Override
-    public void onItemClicked(String pokeName) {
-        Log.d(TAG, "Name: " + pokeName);
     }
 
     @Override

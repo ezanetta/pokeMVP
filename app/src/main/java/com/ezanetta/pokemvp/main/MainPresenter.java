@@ -7,7 +7,5 @@ public interface MainPresenter {
 
     void onResume();
 
-    void onItemClicked(String pokeName);
-
     void onDestroy();
 }

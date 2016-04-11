@@ -10,14 +10,13 @@ public class PokemonEntries {
     public List<PokemonEntry> pokemon_entries;
 
     public class PokemonEntry {
-        public Pokemon pokemon_species;
-
-        public Pokemon getPokemon() {
+        public PokemonSpecie pokemon_species;
+        public PokemonSpecie getPokemon() {
             return pokemon_species;
         }
     }
 
-    public class Pokemon{
+    public class PokemonSpecie {
         public String name;
         public String url;
 

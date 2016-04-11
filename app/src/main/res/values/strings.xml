@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">PokeMVP</string>
     <string name="action_settings">Settings</string>
+    <string name="kanto_name">kanto</string>
 </resources>

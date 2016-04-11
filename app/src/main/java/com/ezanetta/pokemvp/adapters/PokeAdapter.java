@@ -49,7 +49,6 @@ public class PokeAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.pokemon_item, null);
             viewHolder = new ViewHolder();
             viewHolder.pokemonTitle = (TextView)convertView.findViewById(R.id.pokemonTitle);
-
             convertView.setTag(viewHolder);
         } else{
             viewHolder = (ViewHolder)convertView.getTag();

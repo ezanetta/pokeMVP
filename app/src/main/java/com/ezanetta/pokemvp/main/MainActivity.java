@@ -1,5 +1,6 @@
 package com.ezanetta.pokemvp.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +14,8 @@ import android.widget.ProgressBar;
 import com.ezanetta.pokemvp.R;
 import com.ezanetta.pokemvp.adapters.PokeAdapter;
 import com.ezanetta.pokemvp.api.PokemonEntries;
+import com.ezanetta.pokemvp.pokemon.PokemonActivity;
+import com.ezanetta.pokemvp.utils.Constants;
 
 import java.util.List;
 
@@ -90,6 +93,8 @@ public class MainActivity extends AppCompatActivity implements MainView, Adapter
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         PokemonEntries.PokemonEntry pokeEntry = (PokemonEntries.PokemonEntry) mPokeAdapter.getItem(position);
-        mPresenter.onItemClicked(pokeEntry.getPokemon().getName());
+        Intent intent = new Intent(this, PokemonActivity.class);
+        intent.putExtra(Constants.POKEMON_NAME, pokeEntry.getPokemon().getName());
+        startActivity(intent);
     }
 }
