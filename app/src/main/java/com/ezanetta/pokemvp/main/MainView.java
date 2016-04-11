@@ -1,5 +1,7 @@
 package com.ezanetta.pokemvp.main;
 
+import com.ezanetta.pokemvp.api.PokemonEntries;
+
 import java.util.List;
 
 /**
@@ -11,5 +13,5 @@ public interface MainView {
 
     void hideProgress();
 
-    void showPokemons(List<String> pokemons);
+    void setPokemons(List<PokemonEntries.PokemonEntry> pokemons);
 }

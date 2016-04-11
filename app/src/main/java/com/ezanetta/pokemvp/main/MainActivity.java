@@ -5,12 +5,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.ezanetta.pokemvp.R;
+import com.ezanetta.pokemvp.adapters.PokeAdapter;
+import com.ezanetta.pokemvp.api.PokemonEntries;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements MainView{
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
+public class MainActivity extends AppCompatActivity implements MainView, AdapterView.OnItemClickListener{
+
+    private static final String TAG = MainActivity.class.getSimpleName();
+    @Bind(R.id.list) ListView mListView;
+    @Bind(R.id.progress) ProgressBar mProgressBar;
+    private MainPresenter mPresenter;
+    public PokeAdapter mPokeAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +34,22 @@ public class MainActivity extends AppCompatActivity implements MainView{
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        ButterKnife.bind(this);
 
+        mPresenter = new MainPresenterImpl(this);
+        mListView.setOnItemClickListener(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mPresenter.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter.onDestroy();
     }
 
     @Override
@@ -31,12 +61,7 @@ public class MainActivity extends AppCompatActivity implements MainView{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -46,16 +71,25 @@ public class MainActivity extends AppCompatActivity implements MainView{
 
     @Override
     public void showProgress() {
-
+        mProgressBar.setVisibility(View.VISIBLE);
+        mListView.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void hideProgress() {
-
+        mProgressBar.setVisibility(View.INVISIBLE);
+        mListView.setVisibility(View.VISIBLE);
     }
 
     @Override
-    public void showPokemons(List<String> pokemons) {
+    public void setPokemons(List<PokemonEntries.PokemonEntry> pokemons) {
+        mPokeAdapter = new PokeAdapter(this, pokemons);
+        mListView.setAdapter(mPokeAdapter);
+    }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        PokemonEntries.PokemonEntry pokeEntry = (PokemonEntries.PokemonEntry) mPokeAdapter.getItem(position);
+        mPresenter.onItemClicked(pokeEntry.getPokemon().getName());
     }
 }
