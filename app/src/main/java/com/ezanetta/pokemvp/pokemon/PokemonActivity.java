@@ -3,7 +3,6 @@ package com.ezanetta.pokemvp.pokemon;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -13,6 +12,7 @@ import android.widget.TextView;
 import com.ezanetta.pokemvp.R;
 import com.ezanetta.pokemvp.api.Pokemon;
 import com.ezanetta.pokemvp.utils.Constants;
+import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -38,6 +38,7 @@ public class PokemonActivity extends AppCompatActivity implements PokemonView {
         Intent intent = getIntent();
         String pokemonName = intent.getStringExtra(Constants.POKEMON_NAME);
         mPokemonPresenter = new PokemonPresenterImpl(this, pokemonName);
+        setTitle(pokemonName);
     }
 
     @Override
@@ -66,12 +67,10 @@ public class PokemonActivity extends AppCompatActivity implements PokemonView {
 
     @Override
     public void setPokemon(Pokemon pokemon) {
-        Log.d(TAG, "SET POKEMON: " + pokemon.getName());
-
-//        Picasso.with(this).load(pokemon.getSprites().getFront_default()).into(mPokemonImage);
-//        mBaseExperience.setText(pokemon.getBase_experience());
-//        mHeight.setText(pokemon.getHeight());
-//        mWeight.setText(pokemon.getWeight());
+        Picasso.with(this).load(pokemon.getSprites().getFront_default()).into(mPokemonImage);
+        mBaseExperience.setText(Integer.toString(pokemon.getBase_experience()));
+        mHeight.setText(Integer.toString(pokemon.getHeight()));
+        mWeight.setText(Integer.toString(pokemon.getWeight()));
     }
 
 }

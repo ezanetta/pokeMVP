@@ -21,6 +21,13 @@
         <item name="android:layout_marginRight">5dp</item>
     </style>
 
+
+    <style name="AppDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
     <style name="pokeValues">
         <item name="android:textColor">@color/regionColor</item>
     </style>
