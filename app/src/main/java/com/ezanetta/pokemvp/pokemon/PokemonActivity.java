@@ -37,7 +37,8 @@ public class PokemonActivity extends AppCompatActivity implements PokemonView {
         ButterKnife.bind(this);
         Intent intent = getIntent();
         String pokemonName = intent.getStringExtra(Constants.POKEMON_NAME);
-        mPokemonPresenter = new PokemonPresenterImpl(this, pokemonName);
+        mPokemonPresenter = new PokemonPresenterImpl(this);
+        mPokemonPresenter.setPokemonName(pokemonName);
         setTitle(pokemonName);
     }
 

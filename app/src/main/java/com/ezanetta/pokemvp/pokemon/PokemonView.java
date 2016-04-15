@@ -8,10 +8,7 @@ import com.ezanetta.pokemvp.api.Pokemon;
 public interface PokemonView {
 
     void showProgress();
-
     void hideProgress();
-
     void setPokemon(Pokemon pokemon);
-
 
 }

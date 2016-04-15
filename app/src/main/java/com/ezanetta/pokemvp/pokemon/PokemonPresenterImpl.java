@@ -9,10 +9,11 @@ public class PokemonPresenterImpl implements PokemonPresenter, GetPokemonInterac
 
     private PokemonView mPokemonView;
     private GetPokemonInteractorImpl mGetPokemonInteractor;
+    private String pokemonName;
 
-    public PokemonPresenterImpl(PokemonView pokemonView, String pokemon){
+    public PokemonPresenterImpl(PokemonView pokemonView){
         mPokemonView = pokemonView;
-        mGetPokemonInteractor = new GetPokemonInteractorImpl(pokemon);
+        mGetPokemonInteractor = new GetPokemonInteractorImpl();
     }
 
     @Override
@@ -21,12 +22,17 @@ public class PokemonPresenterImpl implements PokemonPresenter, GetPokemonInterac
             mPokemonView.showProgress();
         }
 
-        mGetPokemonInteractor.findPokemon(this);
+        mGetPokemonInteractor.findPokemon(pokemonName, this);
     }
 
     @Override
     public void onDestroy() {
         mPokemonView = null;
+    }
+
+    @Override
+    public void setPokemonName(String pokemonName) {
+        this.pokemonName = pokemonName;
     }
 
     @Override

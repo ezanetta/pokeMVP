@@ -23,8 +23,8 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_marginRight="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginEnd="2dp"
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
             android:id="@+id/pokemonImage"
@@ -33,23 +33,24 @@
 
         <TextView
             style="@style/pokeFields"
+            android:id="@+id/baseExperience"
             android:text="Base experience:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/pokemonImage"
-            android:layout_toEndOf="@+id/pokemonImage"
-            android:id="@+id/baseExperience" />
+            android:layout_toRightOf="@+id/pokemonImage" />
 
         <TextView
             style="@style/pokeValues"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="22"
+            tools:text="143"
             android:id="@+id/baseExperienceValue"
-            android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/baseExperience"
-            android:layout_toEndOf="@+id/baseExperience" />
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/baseExperience" />
 
         <TextView
             style="@style/pokeFields"
@@ -58,8 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/baseExperience"
-            android:layout_toRightOf="@+id/pokemonImage"
-            android:layout_toEndOf="@+id/pokemonImage" />
+            android:layout_toRightOf="@+id/pokemonImage" />
 
         <TextView
             style="@style/pokeValues"
@@ -67,9 +67,12 @@
             android:id="@+id/heightValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/baseExperience"
-            android:layout_toRightOf="@id/pokemonImage"
-            android:layout_toEndOf="@id/height"/>
+            android:layout_alignTop="@+id/height"
+            android:layout_alignRight="@+id/baseExperienceValue"
+            android:layout_alignEnd="@+id/baseExperienceValue"
+            android:layout_alignBottom="@+id/height"
+            android:layout_toRightOf="@+id/height"
+            android:layout_toEndOf="@+id/height" />
 
         <TextView
             style="@style/pokeFields"
@@ -79,7 +82,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/height"
             android:layout_toRightOf="@+id/pokemonImage"
-            android:layout_toEndOf="@+id/pokemonImage" />
+            android:layout_toLeftOf="@+id/heightValue"
+            android:layout_toStartOf="@+id/heightValue" />
 
         <TextView
             style="@style/pokeValues"
@@ -87,9 +91,11 @@
             android:id="@+id/weigthValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/height"
-            android:layout_toRightOf="@id/pokemonImage"
-            android:layout_toEndOf="@id/weigth"/>
+            android:layout_alignTop="@+id/weigth"
+            android:layout_toRightOf="@+id/weigth"
+            android:layout_alignRight="@+id/baseExperienceValue"
+            android:layout_alignEnd="@+id/baseExperienceValue"
+            android:layout_alignBottom="@+id/weigth" />
 
     </RelativeLayout>
 

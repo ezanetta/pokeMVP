@@ -6,6 +6,6 @@ package com.ezanetta.pokemvp.pokemon;
 public interface PokemonPresenter {
 
     void onResume();
-
     void onDestroy();
+    void setPokemonName(String pokemonName);
 }

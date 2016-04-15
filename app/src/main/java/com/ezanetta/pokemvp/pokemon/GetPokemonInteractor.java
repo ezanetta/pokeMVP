@@ -11,5 +11,5 @@ public interface GetPokemonInteractor {
         void onFinished(Pokemon pokemon);
     }
 
-    void findPokemon(onFinishedListener listener);
+    void findPokemon(String pokemonName, onFinishedListener listener);
 }

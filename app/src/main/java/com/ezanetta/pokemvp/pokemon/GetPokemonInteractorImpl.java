@@ -15,14 +15,9 @@ import retrofit2.Response;
 public class GetPokemonInteractorImpl implements GetPokemonInteractor {
 
     private static final String TAG = GetPokemonInteractorImpl.class.getSimpleName();
-    private String pokemonName;
-
-    public GetPokemonInteractorImpl(String pokemonName){
-        this.pokemonName = pokemonName;
-    }
 
     @Override
-    public void findPokemon(final onFinishedListener listener) {
+    public void findPokemon(String pokemonName, final onFinishedListener listener) {
         RestClient client = new RestClient();
 
         Call<Pokemon> call = client.getApiService().getPokemon(pokemonName);
