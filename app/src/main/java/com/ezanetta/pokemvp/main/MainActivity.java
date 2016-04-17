@@ -11,13 +11,18 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
+import com.ezanetta.pokemvp.PokeMVPApp;
 import com.ezanetta.pokemvp.R;
 import com.ezanetta.pokemvp.adapters.PokeAdapter;
 import com.ezanetta.pokemvp.api.PokemonEntries;
+import com.ezanetta.pokemvp.dagger.DaggerMainComponent;
+import com.ezanetta.pokemvp.dagger.MainModule;
 import com.ezanetta.pokemvp.pokemon.PokemonActivity;
 import com.ezanetta.pokemvp.utils.Constants;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -25,10 +30,11 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity implements MainView, AdapterView.OnItemClickListener{
 
     private static final String TAG = MainActivity.class.getSimpleName();
+    public PokeAdapter mPokeAdapter;
     @Bind(R.id.list) ListView mListView;
     @Bind(R.id.progress) ProgressBar mProgressBar;
-    private MainPresenter mPresenter;
-    public PokeAdapter mPokeAdapter;
+
+    @Inject MainPresenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +43,18 @@ public class MainActivity extends AppCompatActivity implements MainView, Adapter
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ButterKnife.bind(this);
+        setupComponent();
 
-        mPresenter = new MainPresenterImpl(this);
+        ButterKnife.bind(this);
         mListView.setOnItemClickListener(this);
+    }
+
+    private void setupComponent(){
+        DaggerMainComponent.builder()
+                .applicationComponent(PokeMVPApp.getApp(this).getComponent())
+                .mainModule(new MainModule(this))
+                .build()
+                .inject(this);
     }
 
     @Override

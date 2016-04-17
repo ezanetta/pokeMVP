@@ -14,11 +14,15 @@ import retrofit2.Response;
  */
 public class GetPokemonInteractorImpl implements GetPokemonInteractor {
 
+    private RestClient client;
     private static final String TAG = GetPokemonInteractorImpl.class.getSimpleName();
+
+    public GetPokemonInteractorImpl(RestClient client) {
+        this.client = client;
+    }
 
     @Override
     public void findPokemon(String pokemonName, final onFinishedListener listener) {
-        RestClient client = new RestClient();
 
         Call<Pokemon> call = client.getApiService().getPokemon(pokemonName);
 

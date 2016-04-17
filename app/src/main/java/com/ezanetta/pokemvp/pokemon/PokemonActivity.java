@@ -9,10 +9,15 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.ezanetta.pokemvp.PokeMVPApp;
 import com.ezanetta.pokemvp.R;
 import com.ezanetta.pokemvp.api.Pokemon;
+import com.ezanetta.pokemvp.dagger.DaggerPokemonComponent;
+import com.ezanetta.pokemvp.dagger.PokemonModule;
 import com.ezanetta.pokemvp.utils.Constants;
 import com.squareup.picasso.Picasso;
+
+import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -27,7 +32,7 @@ public class PokemonActivity extends AppCompatActivity implements PokemonView {
     @Bind(R.id.weigthValue) TextView mWeight;
     @Bind(R.id.baseExperienceValue) TextView mBaseExperience;
 
-    private PokemonPresenter mPokemonPresenter;
+    @Inject PokemonPresenter mPokemonPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +42,18 @@ public class PokemonActivity extends AppCompatActivity implements PokemonView {
         ButterKnife.bind(this);
         Intent intent = getIntent();
         String pokemonName = intent.getStringExtra(Constants.POKEMON_NAME);
-        mPokemonPresenter = new PokemonPresenterImpl(this);
+
+        setupCompontent();
         mPokemonPresenter.setPokemonName(pokemonName);
         setTitle(pokemonName);
+    }
+
+    private void setupCompontent(){
+        DaggerPokemonComponent.builder()
+                .applicationComponent(PokeMVPApp.getApp(this).getComponent())
+                .pokemonModule(new PokemonModule(this))
+                .build()
+                .inject(this);
     }
 
     @Override

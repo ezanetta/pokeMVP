@@ -8,12 +8,12 @@ import com.ezanetta.pokemvp.api.Pokemon;
 public class PokemonPresenterImpl implements PokemonPresenter, GetPokemonInteractorImpl.onFinishedListener {
 
     private PokemonView mPokemonView;
-    private GetPokemonInteractorImpl mGetPokemonInteractor;
+    private GetPokemonInteractor mGetPokemonInteractor;
     private String pokemonName;
 
-    public PokemonPresenterImpl(PokemonView pokemonView){
+    public PokemonPresenterImpl(PokemonView pokemonView, GetPokemonInteractor interactor){
         mPokemonView = pokemonView;
-        mGetPokemonInteractor = new GetPokemonInteractorImpl();
+        mGetPokemonInteractor = interactor;
     }
 
     @Override

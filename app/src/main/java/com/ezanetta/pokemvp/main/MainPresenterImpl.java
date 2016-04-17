@@ -13,9 +13,9 @@ public class MainPresenterImpl implements MainPresenter, FindPokemonsInteractor.
     private MainView mMainView;
     private FindPokemonsInteractor mFindPokemonsInteractor;
 
-    public MainPresenterImpl(MainView main){
+    public MainPresenterImpl(MainView main, FindPokemonsInteractor interactor){
         this.mMainView = main;
-        mFindPokemonsInteractor = new FindPokemonsInteractorImpl();
+        mFindPokemonsInteractor = interactor;
     }
 
     @Override
