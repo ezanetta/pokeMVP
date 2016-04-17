@@ -10,4 +10,4 @@ PokeMVP is a simple example of MVP pattern on android using the Pokemon API
 #### Pokemon Api
 [pokeapi.co][poke]
 
- [poke]: <pokeapi.co>
+ [poke]: <http://pokeapi.co>
